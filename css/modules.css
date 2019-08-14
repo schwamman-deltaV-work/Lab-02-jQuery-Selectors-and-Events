@@ -1,0 +1,9 @@
+section h2 {
+  margin-bottom: 12.5px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+section img {
+  width: 90%;
+  margin-left: 5%;
+}

@@ -34,7 +34,7 @@ function renderImage(url, title, description, horns, keyword) {
   let $section = $('<section>').attr('data-keyword', keyword);
   let $title = $('<h2>').text(title);
   let $img = $('<img>').attr('src', url).attr('alt', description);
-  let $text = $('<p>').text(`Number of horns: ${horns}`);
+  let $text = $('<p>').text(`Num of horns: ${horns}`);
   $section.append($title, $img, $text);
   $('main').append($section);
 }
@@ -49,8 +49,8 @@ function hideElement() {
 
   if(value !== 'default'){
     $('section').hide();
-    $(`section[data-keyword=${value}]`).show();
+    $(`section[data-keyword=${value}]`).fadeIn(750);
   } else {
-    $('section').show();
+    $('section').fadeIn(750);
   }
 }
