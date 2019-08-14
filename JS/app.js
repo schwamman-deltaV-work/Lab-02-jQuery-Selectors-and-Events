@@ -11,7 +11,7 @@ function Image(url, title, description, keyword, horns) {
   this.horns = horns;
 }
 
-$.get('../data/page-1.json', function(data) {
+$.get('data/page-1.json', function(data) {
   let $data = data;
   $data.forEach(function(element){
     image.push(new Image(element.image_url, element.title, element.description, element.keyword, element.horns));
