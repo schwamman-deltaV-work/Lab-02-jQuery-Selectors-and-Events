@@ -8,6 +8,13 @@
     <link rel="stylesheet" type="text/css" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/layouts.css" />
     <link rel="stylesheet" type="text/css" href="css/modules.css" />
+    <script id="image-template" type="text/x-handlebars-template">
+      <section data-keyword="{{keyword}}">
+        <h2>{{title}}</h2>
+        <img src="{{url}}" alt="{{description}}">
+        <p>Num of horns: {{horns}}</p>
+      </section>
+    </script>
   </head>
   <body>
     <header>
@@ -18,15 +25,13 @@
         <option value="default">Filter by Keyword</option>
       </select>
     </header>
-    <main id="page-1">
+    <main id="page-2">
     </main>
     <footer>
       &copy; 2018 Code Fellows
     </footer>
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script src="./js/app.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.js" type="text/javascript"></script>
+    <script src="./js/app.js" type="text/javascript"></script>
   </body>
 </html>

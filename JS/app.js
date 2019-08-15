@@ -1,5 +1,4 @@
 'use strict';
-
 const image = [];
 let keywords = [];
 
@@ -11,24 +10,45 @@ function Image(url, title, description, keyword, horns) {
   this.horns = horns;
 }
 
-$.get('data/page-1.json', function(data) {
-  let $data = data;
-  $data.forEach(function(element){
-    image.push(new Image(element.image_url, element.title, element.description, element.keyword, element.horns));
-    keywords.push(element.keyword);
+function getData1(url) {
+  $.get(url, function(data) {
+    let $data = data;
+    $data.forEach(function(element){
+      image.push(new Image(element.image_url, element.title, element.description, element.keyword, element.horns));
+      keywords.push(element.keyword);
+    });
+    image.forEach(function(element){
+      renderImage(element.url, element.title, element.description, element.horns, element.keyword);
+    });
+    keywords = new Set(keywords);
+    keywords.forEach(function(element){
+      createList(element);
+    });
+    $('select').change(hideElement);
   });
-  image.forEach(function(element){
-    renderImage(element.url, element.title, element.description, element.horns, element.keyword);
-  });
-  keywords = new Set(keywords);
-  console.log(keywords);
-  keywords.forEach(function(element){
-    createList(element);
-  });
-  $('select').change(hideElement);
-});
+}
 
-console.log(image);
+function getData2(url) {
+  $.get(url, function(data) {
+    let $data = data;
+    $data.forEach(function(element){
+      image.push(new Image(element.image_url, element.title, element.description, element.keyword, element.horns));
+      keywords.push(element.keyword);
+    });
+    keywords = new Set(keywords);
+    keywords.forEach(function(element){
+      createList(element);
+    });
+    image.forEach(function(element){
+      let source = $('#image-template').html();
+      let template = Handlebars.compile(source);
+      let context = {keyword: element.keyword, title: element.title, url: element.url, description: element.description, horns: element.horns,};
+      let html = template(context);
+      $('main').append(html);
+    });
+    $('select').change(hideElement);
+  });
+}
 
 function renderImage(url, title, description, horns, keyword) {
   let $section = $('<section>').attr('data-keyword', keyword);
@@ -54,3 +74,13 @@ function hideElement() {
     $('section').fadeIn(750);
   }
 }
+
+if($('#page-1').length > 0) {
+  getData1('data/page-1.json');
+}
+else if($('#page-2').length > 0) {
+  getData2('data/page-2.json');
+}
+
+
+
