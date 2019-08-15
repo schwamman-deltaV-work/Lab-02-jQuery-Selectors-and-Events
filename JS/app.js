@@ -24,7 +24,8 @@ function getData1(url) {
     keywords.forEach(function(element){
       createList(element);
     });
-    $('select').change(hideElement);
+    $('#filter').change(hideElement);
+    $('#sort').change(event => rerenderImage(event));
   });
 }
 
@@ -46,7 +47,8 @@ function getData2(url) {
       let html = template(context);
       $('main').append(html);
     });
-    $('select').change(hideElement);
+    $('#filter').change(hideElement);
+    $('#sort').change(event => rerenderImage(event));
   });
 }
 
@@ -61,7 +63,7 @@ function renderImage(url, title, description, horns, keyword) {
 
 function createList(keyword) {
   let $option = $('<option>').text(keyword).attr('value', keyword);
-  $('select').append($option);
+  $('#filter').append($option);
 }
 
 function hideElement() {
@@ -83,4 +85,11 @@ else if($('#page-2').length > 0) {
 }
 
 
-
+function rerenderImage(event) {
+  let sortValue = event.target.value;
+  image.sort((a, b) => (a.sortValue.toUpperCase() > b.sortValue.toUpperCase()) ? 1 : -1);
+  $('main').empty();
+  image.forEach(function(element){
+    renderImage(element.url, element.title, element.description, element.horns, element.keyword);
+  });
+}
