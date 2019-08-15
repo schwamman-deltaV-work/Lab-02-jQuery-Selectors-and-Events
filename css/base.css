@@ -2,14 +2,30 @@ body{
   width: 90%;
   margin: auto;
   font-family: 'Libre Caslon Text', serif;
+  background-image: url(../assests/images/background-2462436_1920.jpg)
 }
 
 header {
-  width: 50%;
+  width: 80%;
   margin: 50px auto;
   text-align: center;
+  padding: 25px;
+  background-color: whitesmoke;
+  border-radius: 25px;
 }
 
 h1 {
   font-size: 2.6rem;
 }
+
+a {
+  text-decoration: none; 
+  padding: 30px;
+  color: gray;
+
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
